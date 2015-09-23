@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyjavaprops',
-    version='0.1.0',
+    version='0.1.1',
     description='Tool parse Java style properties file',
     author='Luis Carlos Berrocal',
     author_email ='luis.berrocal.1942@gmail.com',
@@ -19,6 +19,6 @@ setup(
     install_requires=[
     ],
     entry_points = {
-        'console_scripts': [],
+        'console_scripts': ['list-settings=pyjavaprops.settings.base:main'],
     }
 )
