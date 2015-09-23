@@ -22,7 +22,13 @@ class JavaPropertiesTestCase(unittest.TestCase):
         self.assertEqual('Value01-test', self.java_properties['Key23'])
 
     def test_variable_dollar(self):
-        self.assertEqual('', self.java_properties['Key24'])
+        self.assertEqual('Value01/path/to/myapp', self.java_properties['Key24'])
+
+    def test_load(self):
+        filename = os.path.join(TEST_DATA_FOLDER, 'simple.properties')
+        simple_java_properties = Properties()
+        simple_java_properties.load(open(filename))
+        print(simple_java_properties)
 
 
 if __name__ == '__main__':

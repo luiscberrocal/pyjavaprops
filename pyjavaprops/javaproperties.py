@@ -197,13 +197,17 @@ class Properties(object):
         value = self.unescape(value)
 
         # Patch from N B @ ActiveState
-        curlies = re.compile("{.+?}")
-        found = curlies.findall(value)
+        curlies = re.compile(r'\$?\{.+?\}')
+        found_variables = curlies.findall(value)
 
-        for f in found:
-            srcKey = f[1:-1]
-            if srcKey in self._props:
-                value = value.replace(f, self._props[srcKey], 1)
+        for found_variable in found_variables:
+            if found_variable.startswith('$'):
+                source_key = found_variable[2:-1]
+            else:
+                source_key = found_variable[1:-1]
+
+            if source_key in self._props:
+                value = value.replace(found_variable, self._props[source_key], 1)
 
         self._props[key] = value.strip()
 
