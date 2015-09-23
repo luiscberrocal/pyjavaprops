@@ -1,5 +1,5 @@
 import os
-from pyjavaprops.javaproperties import Properties
+from pyjavaprops.javaproperties import JavaProperties
 from pyjavaprops.settings.test import TEST_DATA_FOLDER
 
 __author__ = 'luiscberrocal'
@@ -11,7 +11,7 @@ class JavaPropertiesTestCase(unittest.TestCase):
 
     def setUp(self):
         filename = os.path.join(TEST_DATA_FOLDER, 'complex.properties')
-        self.java_properties = Properties()
+        self.java_properties = JavaProperties()
         self.java_properties.load(open(filename))
 
     def test_value_with_spaces(self):
@@ -26,7 +26,7 @@ class JavaPropertiesTestCase(unittest.TestCase):
 
     def test_load(self):
         filename = os.path.join(TEST_DATA_FOLDER, 'simple.properties')
-        simple_java_properties = Properties()
+        simple_java_properties = JavaProperties()
         simple_java_properties.load(open(filename))
         print(simple_java_properties)
 

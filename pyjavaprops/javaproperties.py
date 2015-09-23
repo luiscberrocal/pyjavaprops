@@ -28,7 +28,7 @@ class IllegalArgumentException(Exception):
         return s
 
 
-class Properties(object):
+class JavaProperties(object):
     """ A Python replacement for java.util.Properties """
 
     def __init__(self, props=None):
@@ -337,7 +337,7 @@ def _is_file(obj):
 
 
 if __name__=="__main__":
-    p = Properties()
+    p = JavaProperties()
     p.load(open('test2.properties'))
     p.list()
     print(p)
