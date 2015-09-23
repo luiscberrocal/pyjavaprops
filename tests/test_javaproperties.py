@@ -8,11 +8,13 @@ import unittest
 
 
 class JavaPropertiesTestCase(unittest.TestCase):
+
     def test_load(self):
         filename = os.path.join(TEST_DATA_FOLDER, 'complex.properties')
         p = Properties()
         p.load(open(filename))
         self.assertEqual('Value14 With Spaces', p['Key14'])
+        self.assertEqual('Value01-test', p['Key23'])
 
 
 if __name__ == '__main__':

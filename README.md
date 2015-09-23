@@ -5,3 +5,13 @@ This project is based on Benjamins Brent fork of pyjavaproperties https://bitbuc
 
 ## Development
 
+To create the virtual environment
+
+    $ cd ~/virtual_environments
+
+    $ python3 /usr/local/lib/python3.4/site-packages/virtualenv.py --no-site-packages pyjavaprops_env
+
+    $ source ./pyjavaprops_env/bin/activate
+
+    (pyjavaprops_env) $
+
