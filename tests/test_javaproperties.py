@@ -9,12 +9,20 @@ import unittest
 
 class JavaPropertiesTestCase(unittest.TestCase):
 
-    def test_load(self):
+    def setUp(self):
         filename = os.path.join(TEST_DATA_FOLDER, 'complex.properties')
-        p = Properties()
-        p.load(open(filename))
-        self.assertEqual('Value14 With Spaces', p['Key14'])
-        self.assertEqual('Value01-test', p['Key23'])
+        self.java_properties = Properties()
+        self.java_properties.load(open(filename))
+
+    def test_value_with_spaces(self):
+        self.assertEqual('Value14 With Spaces', self.java_properties['Key14'])
+        self.assertEqual('Value01-test', self.java_properties['Key23'])
+
+    def test_variable(self):
+        self.assertEqual('Value01-test', self.java_properties['Key23'])
+
+    def test_variable_dollar(self):
+        self.assertEqual('', self.java_properties['Key24'])
 
 
 if __name__ == '__main__':
