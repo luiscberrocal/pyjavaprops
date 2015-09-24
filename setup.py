@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open("README.md") as src:
+with open("README.rst") as src:
     readme = src.read()
 
 version = '0.1.3'
@@ -18,10 +18,14 @@ setup(
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
+        'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3.4',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: User Interfaces',
+        'Topic :: Terminals'
     ],
     install_requires=[
     ],
