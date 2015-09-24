@@ -1,10 +1,15 @@
 from setuptools import setup, find_packages
 
-version = '0.1.2'
+with open("README.md") as src:
+    readme = src.read()
+
+version = '0.1.3'
+
 setup(
     name='pyjavaprops',
     version=version,
     description='Tool parse Java style properties file',
+    long_description=readme,
     author='Luis Carlos Berrocal',
     author_email ='luis.berrocal.1942@gmail.com',
     packages=find_packages(),
