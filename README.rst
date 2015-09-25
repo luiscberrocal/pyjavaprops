@@ -2,6 +2,9 @@
 pyjavaprops
 -------------
 
+.. image:: https://travis-ci.org/luiscberrocal/pyjavaprops.svg?branch=master
+    :target: https://travis-ci.org/luiscberrocal/pyjavaprops
+
 Library to read Java style properties files. I don't particularly like properties files but working with them in Java
 is very easy. I recently had to support reading properties files using Python.
 
