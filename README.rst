@@ -5,10 +5,16 @@ pyjavaprops
 .. image:: https://travis-ci.org/luiscberrocal/pyjavaprops.svg?branch=master
     :target: https://travis-ci.org/luiscberrocal/pyjavaprops
 
-
 .. image:: https://coveralls.io/repos/luiscberrocal/pyjavaprops/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/luiscberrocal/pyjavaprops?branch=master
 
+.. image:: https://pypip.in/version/pyjavaprops/badge.svg
+    :target: https://pypi.python.org/pypi/pyjavaprops/
+    :alt: Latest Version
+
+.. image:: https://pypip.in/download/pyjavaprops/badge.svg
+    :target: https://pypi.python.org/pypi/pyjavaprops/
+    :alt: Downloads
 
 
 Library to read Java style properties files. I don't particularly like properties files but working with them in Java

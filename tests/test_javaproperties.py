@@ -1,6 +1,7 @@
 import os
 from pyjavaprops.javaproperties import JavaProperties
-from pyjavaprops.settings.test import TEST_DATA_FOLDER
+from pyjavaprops.settings.test import TEST_DATA_FOLDER, OUTPUT_FOLDER
+from datetime import datetime
 
 __author__ = 'luiscberrocal'
 
@@ -37,6 +38,38 @@ class JavaPropertiesTestCase(unittest.TestCase):
         simple_java_properties = JavaProperties()
         simple_java_properties.load(open(filename))
         self.assertEqual('1.5, 1.6.1, 1.7, 1.8,', simple_java_properties['supported.java.versions'])
+
+    def test_load_windows_1252(self):
+        filename = os.path.join(TEST_DATA_FOLDER, 'windows-1252.properties')
+        simple_java_properties = JavaProperties()
+        simple_java_properties.load(open(filename, encoding='windows-1252'))
+        name = simple_java_properties['name']
+        self.assertEqual('Rodríguez', name)
+
+    def test_load_iso_8859_1(self):
+        filename = os.path.join(TEST_DATA_FOLDER, 'iso-8859-1.properties')
+        iso_8859_1_properties = JavaProperties()
+        with open(filename, encoding='iso-8859-1') as property_file:
+            iso_8859_1_properties.load(property_file)
+            name = iso_8859_1_properties['name']
+            self.assertEqual('Rodríguez', name)
+            country = iso_8859_1_properties['país']
+            self.assertEqual('Panamá', country)
+
+    def test_store(self):
+        filename = os.path.join(TEST_DATA_FOLDER, 'simple.properties')
+        simple_java_properties = JavaProperties()
+        with open(filename) as property_file:
+            simple_java_properties.load(property_file)
+        simple_java_properties['country'] = 'Angola'
+        output_filename = os.path.join(OUTPUT_FOLDER, 'simple_%s.properties' % datetime.now().strftime('%Y%m%d_%H%M'))
+        with open(output_filename, mode='w') as output:
+            simple_java_properties.store(output)
+
+        with open(output_filename) as property_file:
+            simple_java_properties.load(property_file)
+
+        self.assertEqual('Angola', simple_java_properties['country'])
 
 
 if __name__ == '__main__':
