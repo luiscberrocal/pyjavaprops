@@ -35,9 +35,13 @@ Development
 ------------
 
 
+Virtual Environment
+====================
+
+
 To create the virtual environment
 
-.. code-block:: console
+.. code-block:: bash
 
     $ cd ~/virtual_environments
 
@@ -47,3 +51,10 @@ To create the virtual environment
 
     (pyjavaprops_env) $
 
+
+Runnig Tests
+=============
+
+.. code-block:: bash
+
+    $ coverage run --source pyjavaprops setup.py test
