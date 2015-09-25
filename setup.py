@@ -31,5 +31,6 @@ setup(
     ],
     entry_points = {
         'console_scripts': ['list-settings=pyjavaprops.settings.base:main'],
-    }
+    },
+    test_suite="tests",
 )
