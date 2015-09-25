@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open("README.rst") as src:
     readme = src.read()
 
-version = '0.1.4'
+version = '0.1.5'
 
 setup(
     name='pyjavaprops',
@@ -31,5 +31,6 @@ setup(
     ],
     entry_points = {
         'console_scripts': ['list-settings=pyjavaprops.settings.base:main'],
-    }
+    },
+    test_suite="tests",
 )

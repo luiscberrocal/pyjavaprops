@@ -5,6 +5,12 @@ pyjavaprops
 .. image:: https://travis-ci.org/luiscberrocal/pyjavaprops.svg?branch=master
     :target: https://travis-ci.org/luiscberrocal/pyjavaprops
 
+
+.. image:: https://coveralls.io/repos/luiscberrocal/pyjavaprops/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/luiscberrocal/pyjavaprops?branch=master
+
+
+
 Library to read Java style properties files. I don't particularly like properties files but working with them in Java
 is very easy. I recently had to support reading properties files using Python.
 
@@ -35,9 +41,13 @@ Development
 ------------
 
 
+Virtual Environment
+====================
+
+
 To create the virtual environment
 
-.. code-block:: console
+.. code-block:: bash
 
     $ cd ~/virtual_environments
 
@@ -47,3 +57,10 @@ To create the virtual environment
 
     (pyjavaprops_env) $
 
+
+Runnig Tests
+=============
+
+.. code-block:: bash
+
+    $ coverage run --source pyjavaprops setup.py test
