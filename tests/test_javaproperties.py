@@ -1,3 +1,4 @@
+import json
 import os
 from pyjavaprops.javaproperties import JavaProperties, json_adapter
 from pyjavaprops.settings.test import TEST_DATA_FOLDER, OUTPUT_FOLDER
@@ -78,6 +79,9 @@ class JavaPropertiesTestCase(unittest.TestCase):
     def test_json_adapter(self):
         output_filename = os.path.join(OUTPUT_FOLDER, 'simple_%s.json' % datetime.now().strftime('%Y%m%d_%H%M'))
         json_adapter(output_filename, self.java_properties)
+        with open(output_filename) as json_data:
+            json_properties = json.load(json_data)
+        self.assertEqual('Value10', json_properties['Key10'])
 
 
 if __name__ == '__main__':
