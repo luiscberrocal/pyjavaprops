@@ -18,9 +18,10 @@ import time
 IS_PY3 = sys.version_info[0] == 3
 
 
-def json_adapter(filename, java_properties, encoding='utf-8'):
+def export_to_json(filename, java_properties, encoding='utf-8'):
     with open(filename, 'w', encoding=encoding) as outfile:
         json.dump(java_properties.get_property_dict(), outfile, indent=4)
+
 
 class IllegalArgumentException(Exception):
 
