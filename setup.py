@@ -8,7 +8,7 @@ version = '0.1.5'
 setup(
     name='pyjavaprops',
     version=version,
-    description='Tool parse Java style properties file',
+    description='Tool to parse Java style properties file',
     long_description=readme,
     author='Luis Carlos Berrocal',
     author_email ='luis.berrocal.1942@gmail.com',
