@@ -13,7 +13,7 @@ pyjavaprops
 
 
 Library to read Java style properties files. I don't particularly like properties files but working with them in Java
-is very easy. I recently had to support reading properties files using Python.
+is very easy. I recently had to support reading Javaproperties files using Python.
 
 This project is based on Benjamins Brent fork of pyjavaproperties_.
 
@@ -43,17 +43,34 @@ Loading Java properties
         iso_8859_1_properties.load(property_file)
          name = iso_8859_1_properties['name']
 
+Saving Java properties to file
+================================
+
+.. code-block:: python
+
+    filename = os.path.join(TEST_DATA_FOLDER, 'simple.properties')
+    simple_java_properties = JavaProperties()
+    with open(filename) as property_file:
+        simple_java_properties.load(property_file)
+    simple_java_properties['country'] = 'Angola'
+    output_filename = os.path.join(OUTPUT_FOLDER, 'simple_%s.properties' % datetime.now().strftime('%Y%m%d_%H%M'))
+    with open(output_filename, mode='w') as output:
+        simple_java_properties.store(output)
 
 Exporting to json
 ===================
 
 
 .. code-block:: python
+
     output_filename = os.path.join(OUTPUT_FOLDER, 'simple_%s.json' % datetime.now().strftime('%Y%m%d_%H%M'))
     export_to_json(output_filename, java_properties)
     with open(output_filename) as json_data:
         json_properties = json.load(json_data)
         print(json_properties['Key10'])
+
+
+
 
 Development
 ------------
