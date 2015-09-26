@@ -7,6 +7,7 @@ This is modelled as closely as possible to the Java original.
 Created - Anand B Pillai <abpillai@gmail.com>
 """
 from __future__ import print_function
+import json
 import os
 import io
 import sys
@@ -16,6 +17,10 @@ import time
 
 IS_PY3 = sys.version_info[0] == 3
 
+
+def json_adapter(filename, java_properties):
+    with open(filename, 'w') as outfile:
+        json.dump(java_properties.get_property_dict(), outfile, indent=4)
 
 class IllegalArgumentException(Exception):
 
@@ -37,7 +42,7 @@ class JavaProperties(object):
         # as argument yet
 
         # Dictionary of properties.
-        self._props = {}
+        self._properties = {}
         # Dictionary of properties with 'pristine' keys
         # This is used for dumping the properties to a file
         # using the 'store' method
@@ -53,7 +58,7 @@ class JavaProperties(object):
 
     def __str__(self):
         s='{'
-        for key,value in self._props.items():
+        for key,value in self._properties.items():
             s = ''.join((s,key,'=',value,', '))
 
         s=''.join((s[:-2],'}'))
@@ -165,13 +170,13 @@ class JavaProperties(object):
             else:
                 key,value = line,''
             self._keyorder.append(key)
-            self.processPair(key, value)
+            self.process_pair(key, value)
 
-    def processPair(self, key, value):
+    def process_pair(self, key, value):
         """ Process a (key, value) pair """
 
-        oldkey = key
-        oldvalue = value
+        old_key = key
+        old_value = value
 
         # Create key intelligently
         keyparts = self.bspacere.split(key)
@@ -191,9 +196,9 @@ class JavaProperties(object):
         key = ''.join(keyparts)
         if strippable:
             key = key.strip()
-            oldkey = oldkey.strip()
+            old_key = old_key.strip()
 
-        oldvalue = self.unescape(oldvalue)
+        old_value = self.unescape(old_value)
         value = self.unescape(value)
 
         # Patch from N B @ ActiveState
@@ -206,19 +211,19 @@ class JavaProperties(object):
             else:
                 source_key = found_variable[1:-1]
 
-            if source_key in self._props:
-                value = value.replace(found_variable, self._props[source_key], 1)
+            if source_key in self._properties:
+                value = value.replace(found_variable, self._properties[source_key], 1)
 
-        self._props[key] = value.strip()
+        self._properties[key] = value.strip()
 
         # Check if an entry exists in pristine keys
         if key in self._keymap:
-            oldkey = self._keymap.get(key)
-            self._origprops[oldkey] = oldvalue.strip()
+            old_key = self._keymap.get(key)
+            self._origprops[old_key] = old_value.strip()
         else:
-            self._origprops[oldkey] = oldvalue.strip()
+            self._origprops[old_key] = old_value.strip()
             # Store entry in keymap
-            self._keymap[key] = oldkey
+            self._keymap[key] = old_key
 
         if key not in self._keyorder:
             self._keyorder.append(key)
@@ -257,31 +262,31 @@ class JavaProperties(object):
         except IOError:
             raise
 
-    def getProperty(self, key):
+    def get_property(self, key):
         """ Return a property for the given key """
 
-        return self._props.get(key,'')
+        return self._properties.get(key,'')
 
-    def setProperty(self, key, value):
+    def set_property(self, key, value):
         """ Set the property for the given key """
 
         if type(key) is str and type(value) is str:
-            self.processPair(key, value)
+            self.process_pair(key, value)
         else:
-            raise TypeError('both key and value should be strings!')
+            raise TypeError('Both key and value should be strings!')
 
-    def propertyNames(self):
+    def property_names(self):
         """ Return an iterator over all the keys of the property
         dictionary, i.e the names of the properties """
 
-        return self._props.keys()
+        return self._properties.keys()
 
     def list(self, out=sys.stdout):
         """ Prints a listing of the properties to the
         stream 'out' which defaults to the standard output """
 
         out.write('-- listing properties --\n')
-        for key,value in self._props.items():
+        for key,value in self._properties.items():
             out.write(''.join((key,'=',value,'\n')))
 
     def store(self, out, header=""):
@@ -306,18 +311,18 @@ class JavaProperties(object):
         except IOError:
             raise
 
-    def getPropertyDict(self):
-        return self._props
+    def get_property_dict(self):
+        return self._properties
 
     def __getitem__(self, name):
         """ To support direct dictionary like access """
 
-        return self.getProperty(name)
+        return self.get_property(name)
 
     def __setitem__(self, name, value):
         """ To support direct dictionary like access """
 
-        self.setProperty(name, value)
+        self.set_property(name, value)
 
     def __getattr__(self, name):
         """ For attributes not found in self, redirect
@@ -326,8 +331,8 @@ class JavaProperties(object):
         try:
             return self.__dict__[name]
         except KeyError:
-            if hasattr(self._props,name):
-                return getattr(self._props, name)
+            if hasattr(self._properties,name):
+                return getattr(self._properties, name)
 
 
 def _is_file(obj):

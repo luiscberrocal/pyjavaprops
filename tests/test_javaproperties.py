@@ -1,5 +1,5 @@
 import os
-from pyjavaprops.javaproperties import JavaProperties
+from pyjavaprops.javaproperties import JavaProperties, json_adapter
 from pyjavaprops.settings.test import TEST_DATA_FOLDER, OUTPUT_FOLDER
 from datetime import datetime
 
@@ -32,6 +32,10 @@ class JavaPropertiesTestCase(unittest.TestCase):
     def test_key_with_spaces(self):
         #Key16\ With\ Spaces:Value16
         self.assertEqual('Value16', self.java_properties['Key16 With Spaces'])
+
+    def test_get_names(self):
+        #Key16\ With\ Spaces:Value16
+        self.assertEqual(25, len(self.java_properties.property_names()))
 
     def test_load(self):
         filename = os.path.join(TEST_DATA_FOLDER, 'simple.properties')
@@ -70,6 +74,10 @@ class JavaPropertiesTestCase(unittest.TestCase):
             simple_java_properties.load(property_file)
 
         self.assertEqual('Angola', simple_java_properties['country'])
+
+    def test_json_adapter(self):
+        output_filename = os.path.join(OUTPUT_FOLDER, 'simple_%s.json' % datetime.now().strftime('%Y%m%d_%H%M'))
+        json_adapter(output_filename, self.java_properties)
 
 
 if __name__ == '__main__':
