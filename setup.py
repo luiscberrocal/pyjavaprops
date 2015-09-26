@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open("README.rst") as src:
     readme = src.read()
 
-version = '0.1.5'
+version = '1.0.0'
 
 setup(
     name='pyjavaprops',
@@ -17,7 +17,7 @@ setup(
     download_url = 'https://github.com/luiscberrocal/pyjavaprops/archive/v%s.zip' % version,
     license='MIT',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
