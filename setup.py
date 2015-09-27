@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open("README.rst") as src:
     readme = src.read()
 
-version = '1.0.1'
+version = '1.0.2'
 
 setup(
     name='pyjavaprops',

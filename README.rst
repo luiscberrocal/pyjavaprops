@@ -13,11 +13,28 @@ pyjavaprops
 
 
 Library to read Java style properties files. I don't particularly like properties files but working with them in Java
-is very easy. I recently had to support reading Javaproperties files using Python.
+is very easy. I recently had to support reading Java properties files using Python.
 
 This project is based on Benjamins Brent fork of pyjavaproperties_.
 
+The libraries main features are:
+
+- Reads properties files.
+
+- You can add new properties.
+
+- You can save properties to file.
+
+- It interprets variables in curly braces {} and dollar curly braces ${}.
+
 .. _pyjavaproperties: https://bitbucket.org/benjaminbrent/pyjavaproperties-python3
+
+Caveats
+--------
+
+The library does not interpret unicode characters correctly. If you include charactes like \u4500 it will interpret it
+as \, letter y and the number 4500.
+
 
 Installation
 --------------

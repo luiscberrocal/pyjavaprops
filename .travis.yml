@@ -1,11 +1,8 @@
 language: python
-sudo: required
+sudo: false
 python:
   - "3.3"
   - "3.4"
-  # does not have headers provided, please ask https://launchpad.net/~pypy/+archive/ppa
-  # maintainers to fix their pypy-dev package.
-  - "pypy"
 # command to install dependencies
 install:
   - pip install -r requirements/test.txt
