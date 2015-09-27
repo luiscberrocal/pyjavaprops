@@ -17,6 +17,16 @@ is very easy. I recently had to support reading Java properties files using Pyth
 
 This project is based on Benjamins Brent fork of pyjavaproperties_.
 
+The libraries main features are:
+
+- Reads properties files.
+
+- You can add new properties.
+
+- You can save properties to file.
+
+- It interprets variables in curly braces {} and dollar curly braces ${}.
+
 .. _pyjavaproperties: https://bitbucket.org/benjaminbrent/pyjavaproperties-python3
 
 Caveats
